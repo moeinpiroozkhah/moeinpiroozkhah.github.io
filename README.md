@@ -14,13 +14,6 @@ I am an MD and postdoctoral researcher focused on molecular and computational bi
 
 ---
 
-## 📄 Selected Publications
-- Study on extracellular vesicle-based therapy for retinal injury
-- Ongoing work on optic nerve regeneration
-- Bioinformatics analysis of hematologic malignancies
-
----
-
 ## 🧪 Skills
 - Molecular biology techniques
 - Animal Handling
