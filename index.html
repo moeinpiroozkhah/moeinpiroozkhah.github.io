@@ -1,10 +1,735 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My GitHub Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moein Piroozkhah | MD, Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --accent: #1a4a3a;
+    --accent-light: #2d7a5e;
+    --accent-pale: #e8f2ee;
+    --text: #1a1a18;
+    --muted: #5a5a56;
+    --border: #dddbd4;
+    --tag-bg: #e8f2ee;
+    --tag-text: #1a4a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 32px 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    position: relative;
+    z-index: 1;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: 80px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .header-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .header-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .header-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .header-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .header-links a:hover { color: #fff; }
+
+  .header-links svg {
+    width: 15px; height: 15px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ---- MAIN ---- */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  section {
+    padding: 60px 0 0;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  /* ---- ABOUT ---- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 12px;
+  }
+
+  .about-text {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .about-text p + p {
+    margin-top: 14px;
+  }
+
+  .interests-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .interests-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .interests-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .interests-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .interests-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+
+  /* ---- PUBLICATIONS ---- */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pub-item {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .pub-item:last-child { border-bottom: none; }
+
+  .pub-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--border);
+    line-height: 1;
+    min-width: 32px;
+    padding-top: 4px;
+  }
+
+  .pub-content {}
+
+  .pub-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .pub-authors {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .pub-authors strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .pub-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    letter-spacing: 0.03em;
+  }
+
+  .tag.blue { background: #e8eef8; color: #1e3a6e; }
+  .tag.amber { background: #faf0e0; color: #7a4f00; }
+
+  .pub-journal {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .scholar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    padding: 12px 24px;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .scholar-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ---- SKILLS ---- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .skill-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .skill-card-icon svg {
+    width: 18px; height: 18px;
+    stroke: var(--accent);
+  }
+
+  .skill-card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  /* ---- CONTACT ---- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .contact-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--accent-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg {
+    width: 18px; height: 18px;
+    stroke: var(--accent);
+  }
+
+  .contact-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .contact-value {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    word-break: break-all;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 640px) {
+    .header-inner { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px 40px; }
+    .header-links { align-items: flex-start; }
+    main { padding: 0 20px 60px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    nav a { padding: 14px 14px; font-size: 12px; }
+  }
+</style>
 </head>
 <body>
-  <h1>Hello World</h1>
-  <p>This is my first website.</p>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <p class="header-eyebrow">Academic Portfolio</p>
+      <h1>Moein<br>Piroozkhah</h1>
+      <p class="header-subtitle">MD &amp; Postdoctoral Researcher in Molecular Biology, Computational Biology, and Multi-Omics</p>
+    </div>
+    <div class="header-links">
+      <a href="https://scholar.google.com/citations?user=9SkqgwMAAAAJ&hl=en" target="_blank">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://www.linkedin.com/in/moein-piroozkhah-83b470230/" target="_blank">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://orcid.org/0000-0003-0562-9708" target="_blank">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="9" y1="8" x2="12" y2="8"/><path d="M9 12h4a2 2 0 0 1 0 4H9"/></svg>
+        ORCID: 0000-0003-0562-9708
+      </a>
+      <a href="mailto:piroozkhahmoein@gmail.com">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        piroozkhahmoein@gmail.com
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#about">About</a>
+    <a href="#publications">Publications</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <h2>MD &amp; Researcher</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a Medical Doctor and postdoctoral researcher with a focus on the intersection of clinical medicine and computational biology. My work bridges molecular and cellular approaches with large-scale data analysis to understand complex diseases.</p>
+        <p>My primary research focuses on retinal neurodegeneration, extracellular vesicle-based therapeutics, and multi-omics approaches to hematologic malignancies. I combine wet-lab expertise with bioinformatics pipelines to generate clinically translatable insights.</p>
+        <p>I am passionate about open science and reproducible research, and I use R and Python for data analysis, visualization, and genomic workflows.</p>
+      </div>
+      <div class="interests-box">
+        <h3>Research Interests</h3>
+        <ul class="interests-list">
+          <li>Retinal neurodegeneration &amp; optic nerve regeneration</li>
+          <li>Extracellular vesicles in therapy</li>
+          <li>Gene therapy &amp; cell therapy</li>
+          <li>Multi-omics &amp; bioinformatics</li>
+          <li>Hematologic malignancies</li>
+          <li>Molecular biology &amp; imaging</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <p class="section-label">Publications</p>
+    <h2>Selected Research</h2>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-number">01</div>
+        <div class="pub-content">
+          <p class="pub-title">Comprehensive Multi‐Omics Analysis Reveals NPC2 and ITGAV Genes as Potential Prognostic Biomarkers in Gastrointestinal Cancers</p>
+          <p class="pub-authors"><strong>Piroozkhah M</strong>, et al.</p>
+          <div class="pub-meta">
+            <span class="tag">Bioinformatics</span>
+            <span class="tag blue">CancerGenomics</span>
+            <span class="pub-journal">— Original Article</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-number">02</div>
+        <div class="pub-content">
+          <p class="pub-title">IL-2RG as a possible immunotherapeutic target in CRC predicting poor prognosis and regulated by miR-7-5p and miR-26b-5p</p>
+          <p class="pub-authors"> Gharib E+, Rejali L+, <strong>Piroozkhah M +</strong>, et al.</p>
+          <div class="pub-meta">
+            <span class="tag">Bioinformatics</span>
+            <span class="tag blue">CE-RNA Network</span>
+            <span class="pub-journal">— Original Article</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-number">03</div>
+        <div class="pub-content">
+          <p class="pub-title">Toward Precision Medicine in Celiac Disease: Emerging Roles of Multiomics and Artificial Intelligence</p>
+          <p class="pub-authors"><strong>Piroozkhah M</strong>, et al.</p>
+          <div class="pub-meta">
+            <span class="tag">Bioinformatics</span>
+            <span class="tag amber">AI</span>
+            <span class="pub-journal">— Peer-reviewed</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a href="https://scholar.google.com/citations?user=9SkqgwMAAAAJ&hl=en" target="_blank" class="scholar-link">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      View full publication list on Google Scholar
+    </a>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <h2>Technical Expertise</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3>Bioinformatics</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">RNA-seq</span>
+          <span class="skill-tag">Multi-omics</span>
+          <span class="skill-tag">Genomics</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        </div>
+        <h3>Molecular Biology</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">PCR</span>
+          <span class="skill-tag">Western Blot</span>
+          <span class="skill-tag">Cell Culture</span>
+          <span class="skill-tag">Flow Cytometry</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Imaging &amp; Histology</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Confocal</span>
+          <span class="skill-tag">IHC</span>
+          <span class="skill-tag">Retinal imaging</span>
+          <span class="skill-tag">H&amp;E staining</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4"/><path d="M12 20V10"/><path d="M17 20V4"/><path d="M22 20v-7"/></svg>
+        </div>
+        <h3>Data Analysis</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ggplot2</span>
+          <span class="skill-tag">Seurat</span>
+          <span class="skill-tag">DESeq2</span>
+          <span class="skill-tag">Statistics</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Animal Models</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Rodent models</span>
+          <span class="skill-tag">Ophthalmic models</span>
+          <span class="skill-tag">Handling</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Scientific Writing</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Research articles</span>
+          <span class="skill-tag">Reviews</span>
+          <span class="skill-tag">Grant writing</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Get in Touch</h2>
+    <div class="contact-grid">
+
+      <a href="mailto:piroozkhahmoein@gmail.com" class="contact-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">piroozkhahmoein@gmail.com</p>
+        </div>
+      </a>
+
+      <a href="https://scholar.google.com/citations?user=9SkqgwMAAAAJ&hl=en" target="_blank" class="contact-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">Google Scholar</p>
+          <p class="contact-value">View Publications</p>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/moein-piroozkhah-83b470230/" target="_blank" class="contact-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">LinkedIn</p>
+          <p class="contact-value">moein-piroozkhah</p>
+        </div>
+      </a>
+
+      <a href="https://orcid.org/0000-0003-0562-9708" target="_blank" class="contact-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="9" y1="8" x2="12" y2="8"/><path d="M9 12h4a2 2 0 010 4H9"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">ORCID</p>
+          <p class="contact-value">0000-0003-0562-9708</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Moein Piroozkhah, MD · Researcher in Molecular &amp; Computational Biology</p>
+</footer>
+
 </body>
 </html>
